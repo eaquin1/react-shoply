@@ -9,6 +9,8 @@ describe('shoply reducer', () => {
                 products: data.products,
                 cartItems: {},
                 cartValue: 0.0,
+                discountApplied: false,
+                discountAmount: 0
             }
         )
     })
@@ -23,7 +25,9 @@ describe('shoply reducer', () => {
             {
             products: data.products,
             cartItems: {"47314fa1-ae56-4eae-80be-af6691145951": 1},
-            cartValue: "0.00"
+            cartValue: "219.99",
+            discountApplied: false,
+            discountAmount: 0
             }
         )
     })
