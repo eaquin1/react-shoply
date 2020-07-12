@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import CartIcon from "./CartIcon";
-import Cart from "./Cart"
+
 
 function ProductList() {
     const products = useSelector((state) => state.products);
@@ -24,7 +24,6 @@ function ProductList() {
     
     return <div>
         {list}
-        <Cart />
     </div>
 }
 

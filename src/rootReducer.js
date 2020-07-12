@@ -5,7 +5,15 @@ import data from "./data.json";
 const DEFAULT_STATE = {
     products: data.products,
     cartItems: {},
-    cartValue: 0.0
+    cartValue: 0.0,
+    discountApplied: false,
+    discountAmount: 0,
+};
+
+const validDiscounts = {
+    REMOVE10: 0.1,
+    REMOVE20: 0.2,
+    REMOVE30: 0.3,
 };
 
 function rootReducer(state = DEFAULT_STATE, action) {
@@ -16,7 +24,7 @@ function rootReducer(state = DEFAULT_STATE, action) {
             return {
                 ...state,
                 cartItems: cartCopy,
-                cartValue: calculateCartTotal(state.products, cartCopy),
+                cartValue: calculateCartTotal(state.products, cartCopy, state.discountAmount)
             };
         }
         case REMOVE_FROM_CART: {
@@ -30,8 +38,30 @@ function rootReducer(state = DEFAULT_STATE, action) {
             return {
                 ...state,
                 cartItems: cartCopy,
-                cartValue: calculateCartTotal(state.products, cartCopy)
+                cartValue: calculateCartTotal(state.products, cartCopy, state.discountAmount)
             };
+        }
+
+        case APPLY_DISCOUNT: {
+            if (
+                state.discountApplied === false &&
+                validDiscounts[action.discount]
+            ) {
+                
+                const discountAmount = validDiscounts[action.discount];
+                return {
+                    ...state,
+                    cartValue: calculateCartTotal(
+                        state.products,
+                        state.cartItems,
+                        discountAmount
+                    ),
+                    discountApplied: true,
+                    discountAmount
+                };
+            }
+
+            return state
         }
         default:
             return state;

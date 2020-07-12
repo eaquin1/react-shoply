@@ -6,13 +6,14 @@ export function sumCartItems(cart){
     return totalQuantity;
 }
 
-export function calculateCartTotal(products, cart){
+export function calculateCartTotal(products, cart, discount=0){
     let total = 0;
     for (let id in products) {
         const {price} = products[id];
         const quantity = cart[id] || 0;
         total += price * quantity;
     }
-    return total.toFixed(2)
+    let totalWithDiscount = total * (1 - discount)
+    return totalWithDiscount.toFixed(2)
 }
 

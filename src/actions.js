@@ -14,10 +14,10 @@ export function removeFromCart(id) {
     }
 }
 
-export function applyDiscount() {
+export function applyDiscount(discount) {
     return {
-        type: APPLY_DISCOUNT
-
+        type: APPLY_DISCOUNT,
+        discount
     }
 }
 
