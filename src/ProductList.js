@@ -14,8 +14,7 @@ function ProductList() {
             <div className="card">
                 <div className="card-body">
                     <h2 className="card-title text-center">
-                        {/* <Link to={`/products/${id}`}>{products[id].name}</Link>  */}
-                        {products[id].name}
+                        <Link to={`/products/${id}`}>{products[id].name}</Link>  
                         <CartIcon id={id} />
                     </h2>       
                 </div>
